@@ -4,19 +4,29 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Dashboard</div>
+                <h1>Dashboard</h1>
+                @include('inc.messages')
+                <button
+                        class="btn btn-primary btn-lg"
+                        data-toggle="modal"
+                        data-target="#addModal"
+                        type="button"
+                        name="button">Add Bookmark
+                </button>
+                <hr>
+                <h3>My Bookmarks</h3>
+                <ul class="list-group">
+                    @foreach($bookmarks as $bookmark)
+                        <li class="list-group-item clearfix">
+                            <a href="{{$bookmark->url}}" target="_blank"
+                               style="position:absolute;top:30%">{{$bookmark->name}} {{$bookmark->description}}</a>
+                            <span class="float-right button-group">
+                              <button type="button" class="btn btn-danger" name="button"><span></span> Delete</button>
+                            </span>
+                        </li>
+                    @endforeach
+                </ul>
 
-                    <div class="panel-body">
-                        @include('inc.messages')
-                        <button
-                                class="btn btn-primary btn-lg"
-                                data-toggle="modal"
-                                data-target="#addModal"
-                                type="button"
-                                name="button">Add Bookmark</button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -26,7 +36,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Add Bookmark</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('bookmarks.store') }}" method="post">
