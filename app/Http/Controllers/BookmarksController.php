@@ -44,4 +44,17 @@ class BookmarksController extends Controller
 
         return redirect('/home')->with('success', 'Bookmark Added');
     }
+
+    /**
+     * @param $id
+     * @return bool
+     * @throws \Exception
+     */
+    public function destroy($id, Request $request)
+    {
+        $bookmark = Bookmarks::find($id);
+        $bookmark->delete();
+        $request->session()->flash('success', 'Bookmark removed!');
+        return 'success';
+    }
 }

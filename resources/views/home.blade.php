@@ -21,7 +21,8 @@
                             <a href="{{$bookmark->url}}" target="_blank"
                                style="position:absolute;top:30%">{{$bookmark->name}} {{$bookmark->description}}</a>
                             <span class="float-right button-group">
-                              <button type="button" class="btn btn-danger" name="button"><span></span> Delete</button>
+                              <button type="button" class="btn btn-danger delete-bookmark" data-id="{{$bookmark->id}}"
+                                      name="button">Delete</button>
                             </span>
                         </li>
                     @endforeach
