@@ -15,4 +15,16 @@ class BookmarksController extends Controller
     {
         return view('home');
     }
+
+    /**
+     * @param Request $request
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'url' => 'required|string|max:255'
+        ]);
+    }
 }
